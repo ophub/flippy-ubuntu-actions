@@ -96,6 +96,14 @@ on:
           - 6.1.y_6.12.y
           - 6.1.y_6.6.y
           - 6.6.y_6.12.y
+      build_storage:
+        description: "Select storage type."
+        required: false
+        default: "save"
+        type: choice
+        options:
+          - save
+          - temp
 
 
 env:
@@ -162,10 +170,10 @@ jobs:
           mkdir -p opt
           sudo rm -rf /opt && sudo ln -sf /builder/opt /opt
 
-          echo "build_tag=ubuntu_save_$(date +"%Y.%m")" >> ${GITHUB_ENV}
+          echo "build_tag=ubuntu_${{ inputs.linux_flavor }}_${{ inputs.build_storage }}_$(date +"%Y.%m")" >> ${GITHUB_ENV}
           echo "status=success" >> ${GITHUB_OUTPUT}
 
-      - name: Build Ubuntu
+      - name: Build Ubuntu [ ${{ inputs.linux_flavor }} ]
         uses: ophub/flippy-ubuntu-actions@main
         if: ${{ steps.opt.outputs.status }} == 'success' && !cancelled()
         env:
