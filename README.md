@@ -14,7 +14,9 @@ This Actions uses his building scripts without any modification, only developed 
 
 ## Usage
 
-This Actions can be used by referencing it in the `.github/workflows/*.yml` cloud compilation script, for example [build-ubuntu.yml](.github/workflows/build-ubuntu.yml). The code is as follows:
+This Actions can be used by referencing it in the `.github/workflows/*.yml` cloud build script, for example [build-ubuntu.yml](.github/workflows/build-ubuntu.yml). The code is as follows:
+
+Recommended to use an ARM64 architecture runner for build: `runs-on: ubuntu-24.04-arm`
 
 ```yaml
 - name: Build Ubuntu

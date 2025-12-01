@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #==============================================================================================
 #
-# Description: Ubuntu Image Builder for Rockchip RK35xx
-# Function: Use Flippy's kernel files and script to build Ubuntu images
-# Copyright (C) 2021 https://github.com/unifreq/rk-ubuntu-build
-# Copyright (C) 2021 https://github.com/ophub/flippy-ubuntu-actions
+# Description: Ubuntu Image and rootfs Builder
+# Function: Use Flippy's kernel files and script to build Ubuntu
+# Copyright (C) 2025 https://github.com/unifreq/rk-ubuntu-build
+# Copyright (C) 2025 https://github.com/ophub/flippy-ubuntu-actions
 #
 #======================================= Functions list =======================================
 #

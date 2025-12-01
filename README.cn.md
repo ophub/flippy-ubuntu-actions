@@ -16,6 +16,8 @@
 
 在 `.github/workflows/*.yml` 云编译脚本中引入此 Actions 即可使用，例如 [build-ubuntu.yml](.github/workflows/build-ubuntu.yml)。代码如下：
 
+推荐使用 ARM64 架构的 runner 进行编译：`runs-on: ubuntu-24.04-arm`
+
 ```yaml
 - name: Build Ubuntu
   uses: ophub/flippy-build-actions@main
