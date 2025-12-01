@@ -26,16 +26,15 @@
 #
 CONFIG_MAP="
 #
-# Rockchip RK3588/RK3588S Family
+# RK3588 kernel devices
 #-----------------------+------------------+---------------------
 # /env/machine/{*}.env  :/env/soc/{*}.env  :/upstream/kernel/{*}
 #-----------------------+------------------+---------------------
-e54c                    :rk3588s-ml        :mainline
 h88k                    :rk3588            :rk3588
 rock-5b                 :rk3588            :rk3588
 
 
-# Rockchip RK35XX Family
+# RK35XX kernel devices
 #-----------------------+------------------+---------------------
 # /env/machine/{*}.env  :/env/soc/{*}.env  :/upstream/kernel/{*}
 #-----------------------+------------------+---------------------
@@ -48,16 +47,17 @@ ht2                     :rk3528            :rk35xx
 ht3                     :rk3528            :rk35xx
 yixun-rs6pro            :rk3528            :rk35xx
 netfusion               :rk3566-k61        :rk35xx
-h66k                    :rk3568            :mainline
-h68k                    :rk3568            :mainline
-#-----------------------+------------------+---------------------
-h69k                    :rk3568            :mainline
-h69k-max                :rk3568            :mainline
 
 
-# Rockchip Mainline Family
+# Mainline kernel devices
 #-----------------------+------------------+---------------------
 # /env/machine/{*}.env  :/env/soc/{*}.env  :/upstream/kernel/{*}
+#-----------------------+------------------+---------------------
+e54c                    :rk3588s-ml        :mainline
+h66k                    :rk3568            :mainline
+h68k                    :rk3568            :mainline
+h69k                    :rk3568            :mainline
+h69k-max                :rk3568            :mainline
 #-----------------------+------------------+---------------------
 zcube1-max              :rk3399-ml         :mainline
 #
