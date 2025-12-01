@@ -1,0 +1,6 @@
+!.gitignore
+.DS_Store
+npm-debug.log*
+/build
+/output
+/tmp_dir
