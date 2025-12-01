@@ -27,39 +27,39 @@
 CONFIG_MAP="
 #
 # Rockchip RK3588/RK3588S Family
-#------------------+--------------+-----------
-# machine          :soc           :kernel
-#------------------+--------------+-----------
-e54c               :rk3588s-ml    :rk3588
-h88k               :rk3588        :rk3588
-rock-5b            :rk3588        :rk3588
+#-----------------------+------------------+---------------------
+# /env/machine/{*}.env  :/env/soc/{*}.env  :/upstream/kernel/{*}
+#-----------------------+------------------+---------------------
+e54c                    :rk3588s-ml        :mainline
+h88k                    :rk3588            :rk3588
+rock-5b                 :rk3588            :rk3588
 
 
 # Rockchip RK35XX Family
-#------------------+--------------+-----------
-# machine          :soc           :kernel
-#------------------+--------------+-----------
-100ask-dshanpi-a1  :rk3576-k61    :rk35xx
-e20c               :rk3528        :rk35xx
-h28k               :rk3528        :rk35xx
-h29k               :rk3528        :rk35xx
-ht2                :rk3528        :rk35xx
-#------------------+--------------+-----------
-ht3                :rk3528        :rk35xx
-yixun-rs6pro       :rk3528        :rk35xx
-netfusion          :rk3566        :rk35xx
-h66k               :rk3568        :rk35xx
-h68k               :rk3568        :rk35xx
-#------------------+--------------+-----------
-h69k               :rk3568        :rk35xx
-h69k-max           :rk3568        :rk35xx
+#-----------------------+------------------+---------------------
+# /env/machine/{*}.env  :/env/soc/{*}.env  :/upstream/kernel/{*}
+#-----------------------+------------------+---------------------
+100ask-dshanpi-a1       :rk3576-k61        :rk35xx
+e20c                    :rk3528            :rk35xx
+h28k                    :rk3528            :rk35xx
+h29k                    :rk3528            :rk35xx
+ht2                     :rk3528            :rk35xx
+#-----------------------+------------------+---------------------
+ht3                     :rk3528            :rk35xx
+yixun-rs6pro            :rk3528            :rk35xx
+netfusion               :rk3566-k61        :rk35xx
+h66k                    :rk3568            :mainline
+h68k                    :rk3568            :mainline
+#-----------------------+------------------+---------------------
+h69k                    :rk3568            :mainline
+h69k-max                :rk3568            :mainline
 
 
 # Rockchip Mainline Family
-#------------------+--------------+-----------
-# machine          :soc           :kernel
-#------------------+--------------+-----------
-zcube1-max         :rk3399-ml     :mainline
+#-----------------------+------------------+---------------------
+# /env/machine/{*}.env  :/env/soc/{*}.env  :/upstream/kernel/{*}
+#-----------------------+------------------+---------------------
+zcube1-max              :rk3399-ml         :mainline
 #
 "
 
@@ -200,6 +200,8 @@ init_var() {
     echo -e "${INFO} Make directory: [ /opt/${SELECT_PACKITPATH} ]"
     echo -e "${INFO} Make target: [ ${MAKE_TARGET} ]"
     echo -e "${INFO} Make SoC: [ $(echo ${MAKE_UBUNTU_LIST[@]} | xargs) ]"
+    echo -e "${INFO} RK3588 devices: [ $(echo ${MAKE_UBUNTU_RK3588[@]} | xargs) ]"
+    echo -e "${INFO} RK35XX devices: [ $(echo ${MAKE_UBUNTU_RK35XX[@]} | xargs) ]"
     echo -e "${INFO} Linux flavor: [ ${ENV_LINUX_FLAVOR} ]"
     echo -e "${INFO} Custom boot mode: [ ${ENV_CUSTOM_BOOT} ]"
     echo -e "${INFO} Kernel tags: [ $(echo ${KERNEL_TAGS[@]} | xargs) ]"
