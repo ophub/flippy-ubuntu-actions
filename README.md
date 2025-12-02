@@ -22,8 +22,8 @@ Recommended to use an ARM64 architecture runner for build: `runs-on: ubuntu-24.0
 - name: Build Ubuntu
   uses: ophub/flippy-build-actions@main
   env:
-    MAKE_TARGET: img
-    UBUNTU_SOC: e20c_h28k
+    BUILD_TARGET: image
+    ENV_MACHINE: e20c_h28k
     ENV_LINUX_FLAVOR: noble-xfce
     ENV_CUSTOM_BOOT: boot256-ext4root
     KERNEL_VERSION_NAME: 6.1.y_6.12.y
@@ -40,8 +40,8 @@ Based on the latest kernel building scripts released by `Flippy`, optional param
 | KERNEL_REPO_URL        | breakingbadboy/OpenWrt | Set `<owner>/<repo>` of the kernel download repository, it downloads from the [kernel Releases](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) maintained by breakingbadboy by default. |
 | KERNEL_VERSION_NAME    | 6.12.y                 | Set the [Mainline Kernel version](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable), you can check and select a specific one. You can specify a single kernel such as `6.1.y`, or select multiple kernels connected with `_` like `6.1.y_6.12.y` |
 | KERNEL_AUTO_LATEST     | true                   | Set whether to automatically adopt the latest version kernel of the same series. When set to `true`, it will automatically look for whether there is an updated version of the kernel specified in `KERNEL_VERSION_NAME`, such as `6.1.y`, in the kernel library, and if there is an updated version, it will automatically replace it with the latest version. When set to `false`, it will compile the specified version kernel. |
-| UBUNTU_SOC             | all                    | Set the target SoC. Defaults to all (builds all devices). Supports single device (e.g., e20c) or multiple devices separated by _ (e.g., e20c_e54c). For available values, see: [env/machine](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/machine) |
-| MAKE_TARGET            | img                    | Set whether to build an img image or rootfs file. Optional values are `img` / `rootfs`. Default is `img`. |
+| BUILD_TARGET           | image                  | Set whether to build an image or rootfs file. Optional values are `image` / `rootfs`. Default is `image`. |
+| ENV_MACHINE            | all                    | Set the target SoC. Defaults to all (builds all devices). Supports single device (e.g., e20c) or multiple devices separated by _ (e.g., e20c_e54c). For available values, see: [env/machine](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/machine) |
 | ENV_LINUX_FLAVOR       | noble-rk-media         | Set the Linux distribution flavor for the image or rootfs. Default is `noble-rk-media`. For available values, see: [env/linux](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/linux) |
 | ENV_CUSTOM_BOOT        | boot256-ext4root       | Set the custom boot mode. Default is `boot256-ext4root`. For available values, see: [env/custom](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/custom) |
 | GZIP_IMGS              | auto                   | Set the format of the file compression after building, optional values are `.gz` (default) / `.xz` / `.zip` / `.zst` / `.7z` |
