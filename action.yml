@@ -12,7 +12,7 @@ runs:
   steps:
     - shell: bash
       run: |
-        ./make_actions.sh
+        ${{ github.action_path }}/make_actions.sh
 
 branding:
   icon: "terminal"
