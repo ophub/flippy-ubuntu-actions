@@ -12,7 +12,8 @@ runs:
   steps:
     - shell: bash
       run: |
-        ${{ github.action_path }}/make_actions.sh
+        cd ${{ github.action_path }}
+        ./make_actions.sh
 
 branding:
   icon: "terminal"
