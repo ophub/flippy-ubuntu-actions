@@ -113,7 +113,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-24.04-arm
-    if: ${{ github.event.repository.owner.id }} == ${{ github.event.sender.id }}
+    if: ${{ github.event.repository.owner.id == github.event.sender.id }}
 
     steps:
       - name: Checkout
@@ -176,7 +176,7 @@ jobs:
 
       - name: Build Ubuntu [ ${{ inputs.linux_flavor }} ]
         uses: ophub/flippy-ubuntu-actions@main
-        if: ${{ steps.opt.outputs.status }} == 'success' && !cancelled()
+        if: ${{ steps.opt.outputs.status == 'success' && !cancelled() }}
         env:
           BUILD_TARGET: ${{ inputs.build_target }}
           ENV_MACHINE: ${{ inputs.build_machine }}
@@ -187,7 +187,7 @@ jobs:
 
       - name: Upload Ubuntu to Release
         uses: ncipollo/release-action@main
-        if: ${{ env.BUILD_STATUS }} == 'success' && !cancelled()
+        if: ${{ env.BUILD_STATUS == 'success' && !cancelled() }}
         with:
           tag: ${{ env.build_tag }}
           artifacts: ${{ env.BUILD_OUTPUTPATH }}/*
