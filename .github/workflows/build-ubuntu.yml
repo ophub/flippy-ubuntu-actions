@@ -29,6 +29,7 @@ on:
           - ht3
           - netfusion
           - rock-5b
+          - tl3562-minievm
           - yixun-rs6pro
           - zcube1-max
           - all
