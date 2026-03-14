@@ -67,7 +67,7 @@ on:
       custom_boot:
         description: "Set the custom boot mode."
         required: false
-        default: "boot256-ext4root"
+        default: "boot384-ext4root"
         type: choice
         options:
           - boot256-ext4root
