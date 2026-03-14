@@ -2,9 +2,9 @@
 
 查看英文说明 | [View English description](README.md)
 
-[unifreq/rk-ubuntu-build](https://github.com/unifreq/rk-ubuntu-build) 是 `Flippy` 开发的 Ubuntu 制作脚本仓库。支持 Rockchip 系列设备，例如 `rock-5b`, `h28k` 等。
+[unifreq/rk-ubuntu-build](https://github.com/unifreq/rk-ubuntu-build) 是 `Flippy` 开发的 Ubuntu 镜像构建脚本仓库，支持 Rockchip 系列设备，如 `rock-5b`、`h28k` 等。
 
-此 Actions 使用他的制作脚本，未做任何修改，仅进行了智能化 Action 应用开发，让使用 github Actions 在线制作时变得更加简单化和个性化。
+本 Action 直接使用其构建脚本，未做任何修改，仅在此基础上进行了智能化的 GitHub Action 应用封装，使通过 GitHub Actions 在线构建更加便捷和灵活。
 
 ## Ubuntu 固件默认信息
 
@@ -14,9 +14,9 @@
 
 ## 使用方法
 
-在 `.github/workflows/*.yml` 云编译脚本中引入此 Actions 即可使用，例如 [build-ubuntu.yml](.github/workflows/build-ubuntu.yml)。
+在 `.github/workflows/*.yml` 工作流配置文件中引入本 Action 即可使用，示例参考 [build-ubuntu.yml](.github/workflows/build-ubuntu.yml)。
 
-推荐使用 ARM64 架构的 runner 进行编译：`runs-on: ubuntu-24.04-arm`
+推荐使用 ARM64 架构的 Runner 进行构建：`runs-on: ubuntu-24.04-arm`
 
 ```yaml
 - name: Build Ubuntu
@@ -31,37 +31,37 @@
 
 ## 可选参数说明
 
-根据 `Flippy` 最新发布的内核构建脚本，对 `选择内核版本`、`选择设备SoC` 等进行了可选参数配置。
+基于 `Flippy` 最新发布的内核构建脚本，本 Action 提供了 `内核版本`、`目标设备 SoC` 等可选参数配置。
 
 | 参数                   | 默认值                  | 说明                                            |
 |------------------------|------------------------|------------------------------------------------|
-| SCRIPT_REPO_URL        | unifreq/rk-ubuntu-build | 设置构建脚本源码仓库的 `<owner>/<repo>` |
+| SCRIPT_REPO_URL        | unifreq/rk-ubuntu-build | 设置构建脚本源码仓库，格式为 `<owner>/<repo>` |
 | SCRIPT_REPO_BRANCH     | main                   | 设置构建脚本源码仓库的分支                        |
-| KERNEL_REPO_URL        | breakingbadboy/OpenWrt | 设置内核下载仓库的 `<owner>/<repo>`，默认从 breakingbadboy 维护的[内核 Releases](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable)里下载。 |
-| KERNEL_VERSION_NAME    | 6.12.y                 | 设置[主线内核版本](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable)，可以查看并选择指定。可指定单个内核如 `6.1.y` ，可选择多个内核用`_`连接如 `6.1.y_6.12.y` |
-| KERNEL_AUTO_LATEST     | true                   | 设置是否自动采用同系列最新版本内核。当为 `true` 时，将自动在内核库中查找在 `KERNEL_VERSION_NAME` 中指定的内核如 `6.1.y` 的同系列是否有更新的版本，如有更新版本时，将自动更换为最新版。设置为 `false` 时将编译指定版本内核。 |
-| BUILD_TARGET           | image                  | 设置构建 image 完整镜像或者 rootfs 文件。可选值 `image` / `rootfs`。默认值 `image` |
-| ENV_MACHINE            | all                    | 设置构建设备的 `SOC` ，默认 `all` 构建全部设备，可指定单个设备如 `e20c` ，可选择多个设备用`_`连接如 `e20c_e54c` 。可选值参考：[env/machine](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/machine) |
-| ENV_LINUX_FLAVOR       | noble-rk-media         | 设置构建镜像或 rootfs 的 Linux 发行版风格。默认值 `noble-rk-media`，可选值参考：[env/linux](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/linux) |
-| ENV_CUSTOM_BOOT        | boot256-ext4root       | 设置自定义启动模式。默认值 `boot256-ext4root`，可选值参考：[env/custom](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/custom) |
-| GZIP_IMGS              | auto                   | 设置构建完毕后文件压缩的格式，可选值 `.gz`（默认） / `.xz` / `.zip` / `.zst` / `.7z` |
-| SELECT_PACKITPATH      | rk-ubuntu-build        | 设置 `/opt` 下的构建目录名称                     |
-| SELECT_OUTPUTPATH      | output                 | 设置 `${SELECT_PACKITPATH}` 目录中固件输出的目录名称 |
-| SCRIPT_MKIMG           | mkimg.sh               | 设置制作镜像的脚本文件名                         |
-| SCRIPT_MKROOTFS        | mkrootfs.sh            | 设置制作 rootfs 的脚本文件名                     |
+| KERNEL_REPO_URL        | breakingbadboy/OpenWrt | 设置内核下载仓库，格式为 `<owner>/<repo>`。默认从 breakingbadboy 维护的[内核 Releases](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable) 下载。 |
+| KERNEL_VERSION_NAME    | 6.12.y                 | 设置[主线内核版本](https://github.com/breakingbadboy/OpenWrt/releases/tag/kernel_stable)，可查看并选择指定版本。支持指定单个内核（如 `6.1.y`），也可使用 `_` 连接多个内核（如 `6.1.y_6.12.y`） |
+| KERNEL_AUTO_LATEST     | true                   | 设置是否自动采用同系列最新版本内核。设为 `true` 时，将自动在内核仓库中查找 `KERNEL_VERSION_NAME` 所指定内核（如 `6.1.y`）的同系列最新版本，若存在更新版本则自动替换。设为 `false` 时将使用指定版本内核进行构建。 |
+| BUILD_TARGET           | image                  | 设置构建目标类型：完整镜像或 rootfs 文件。可选值为 `image` / `rootfs`，默认为 `image` |
+| ENV_MACHINE            | all                    | 设置目标设备的 SoC，默认为 `all`（构建全部设备）。支持指定单个设备（如 `e20c`），也可使用 `_` 连接多个设备（如 `e20c_e54c`）。可选值参考：[env/machine](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/machine) |
+| ENV_LINUX_FLAVOR       | noble-rk-media         | 设置构建镜像或 rootfs 所使用的 Linux 发行版风格，默认为 `noble-rk-media`。可选值参考：[env/linux](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/linux) |
+| ENV_CUSTOM_BOOT        | boot256-ext4root       | 设置自定义引导配置，默认为 `boot256-ext4root`。可选值参考：[env/custom](https://github.com/unifreq/rk-ubuntu-build/tree/main/env/custom) |
+| GZIP_IMGS              | auto                   | 设置构建完成后的文件压缩格式，可选值为 `.gz`（默认） / `.xz` / `.zip` / `.zst` / `.7z` |
+| SELECT_PACKITPATH      | rk-ubuntu-build        | 设置 `/opt` 下的构建工作目录名称                  |
+| SELECT_OUTPUTPATH      | output                 | 设置 `${SELECT_PACKITPATH}` 目录下的固件输出目录名称 |
+| SCRIPT_MKIMG           | mkimg.sh               | 设置构建镜像的脚本文件名                         |
+| SCRIPT_MKROOTFS        | mkrootfs.sh            | 设置构建 rootfs 的脚本文件名                     |
 
 
 ## 输出参数说明
 
-根据 github.com 的标准输出了 3 个环境变量，方便编译步骤后续使用。由于 github.com 最近修改了 fork 仓库的设置，默认关闭了 Workflow 的读写权限，所以上传到 `Releases` 需要设置 `Workflow 读写权限`，详见[使用说明](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#3-fork-仓库并设置工作流权限)。
+按照 GitHub Actions 的规范输出了 3 个环境变量，供后续工作流步骤使用。由于 GitHub 已将 Fork 仓库的 Workflow 读写权限默认关闭，因此上传至 `Releases` 前需要手动开启 `Workflow 读写权限`，详见[使用说明](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.cn.md#3-fork-仓库并设置工作流权限)。
 
 | 参数                         | 默认值                       | 说明               |
 |-----------------------------|-----------------------------|--------------------|
-| ${{ env.BUILD_OUTPUTPATH }} | /opt/rk-ubuntu-build/output | 构建输出路径         |
-| ${{ env.BUILD_OUTPUTDATE }} | 07.15.1058                  | 构建日期            |
-| ${{ env.BUILD_STATUS }}     | success / failure           | 构建状态。成功 / 失败 |
+| ${{ env.BUILD_OUTPUTPATH }} | /opt/rk-ubuntu-build/output | 构建产物输出路径     |
+| ${{ env.BUILD_OUTPUTDATE }} | 07.15.1058                  | 构建日期（月.日.时分）|
+| ${{ env.BUILD_STATUS }}     | success / failure           | 构建状态：成功 / 失败 |
 
-## 链接
+## 相关链接
 - [unifreq/rk-ubuntu-build](https://github.com/unifreq/rk-ubuntu-build)
 - [breakingbadboy/OpenWrt](https://github.com/breakingbadboy/OpenWrt)
 - [ophub/kernel](https://github.com/ophub/kernel)
