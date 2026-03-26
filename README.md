@@ -1,6 +1,6 @@
 # Description
 
-View Chinese description  |  [查看中文说明](README.cn.md)
+[English Instructions](README.md) | [中文说明](README.cn.md)
 
 [unifreq/rk-ubuntu-build](https://github.com/unifreq/rk-ubuntu-build) is an Ubuntu image build script repository developed by `Flippy`, supporting Rockchip series devices such as `rock-5b`, `h28k`, etc.
 

@@ -1,6 +1,6 @@
 # 功能说明
 
-查看英文说明 | [View English description](README.md)
+[English Instructions](README.md) | [中文说明](README.cn.md)
 
 [unifreq/rk-ubuntu-build](https://github.com/unifreq/rk-ubuntu-build) 是 `Flippy` 开发的 Ubuntu 镜像构建脚本仓库，支持 Rockchip 系列设备，如 `rock-5b`、`h28k` 等。
 
