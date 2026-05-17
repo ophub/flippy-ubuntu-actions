@@ -189,7 +189,7 @@ jobs:
           KERNEL_VERSION_NAME: ${{ inputs.ubuntu_kernel }}
 
       - name: Upload Ubuntu images to Release
-        uses: ophub/upload-to-release@main
+        uses: ophub/upload-to-releases@main
         if: ${{ env.BUILD_STATUS == 'success' && !cancelled() }}
         with:
           tag: ${{ env.build_tag }}
