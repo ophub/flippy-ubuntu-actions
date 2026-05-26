@@ -1,5 +1,5 @@
 #==========================================================================
-# Description: Build Ubuntu image and rootfs
+# Description: Build Ubuntu/Debian image and rootfs for Rockchip devices
 # Copyright (C) 2025 https://github.com/unifreq/rk-ubuntu-build
 # Copyright (C) 2025 https://github.com/ophub/flippy-ubuntu-actions
 #==========================================================================
@@ -16,46 +16,55 @@ on:
         default: "all"
         type: choice
         options:
+          - all
+          - 100ask-dshanpi-a1
           - e20c
           - e54c
           - h28k
           - h29k
           - h66k
           - h68k
-          - h69k-max
           - h69k
+          - h69k-max
           - h88k
           - ht2
           - ht3
           - netfusion
           - rock-5b
           - tl3562-minievm
+          - xiaoyu-50ipc
           - yixun-rs6pro
           - zcube1-max
-          - all
       linux_flavor:
         description: "Set the Linux flavor."
         required: false
         default: "noble-rk-media"
         type: choice
         options:
-          - trixie-mini
           - bookworm-mini
           - bookworm-python
+          - bookworm-rkmd-new
           - bookworm-rk-media
           - bullseye-mini
-          - noble-mini-stress
+          - focal
+          - focal-mini
+          - jammy-mini
+          - jammy-rkmd-new
+          - jammy-xfce
           - noble-mini
+          - noble-mini-stress
           - noble-python
+          - noble-rkmd-new
           - noble-rk-media-desktop
           - noble-rk-media
+          - noble-small-rk-media
           - noble-tiny
           - noble-xfce
-          - jammy-mini
-          - jammy-xfce
-          - focal-mini
-          - focal
-          - questing-mini
+          - resolute-rkmd-new
+          - resolute-tiny
+          - trixie-mini
+          - trixie-rkmd-new
+          - trixie-tiny
       build_target:
         description: "Select build target."
         required: false
@@ -71,12 +80,15 @@ on:
         type: choice
         options:
           - boot256-ext4root
+          - boot256-f2fsroot
           - boot256-xfsroot
           - boot384-btrfsroot
           - boot384-ext4root
+          - boot384-f2fsroot
           - boot384-xfsroot
           - boot640-btrfsroot
           - boot640-ext4root
+          - boot640-f2fsroot
           - boot640-xfsroot
       kernel_repo:
         description: "Set the kernel repository."
